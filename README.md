@@ -7,10 +7,10 @@
 - styled components
 - 파일 구조
   
-    <img src="./md_images/file_Frame.jpg">
+    <img src="./md_images/file_Frame1.jpg">
 ---
 ## 2. 결과물
-- react-masonry-css 이용하여 이미지 3개씩 출력
+- react-masonry-css 이용하여 css작업
   
     <img src="./md_images/gallery_output.gif">
 ---
@@ -52,6 +52,28 @@
     const onDel=(id)=>{
         setMemory(memory.filter(item=>item.id !== id))
     }
+    ```
+---
+# + paging 작업추가
+### 1. 파일 구조
+- 파일 구조
+<img src="./md_images/file_Frame2.jpg">
+
+- 결과물
+<img src="./md_images/output.png">
+
+
+### 2. code
+-  화면에 9개씩 데이터 출력
+    ```js
+        const [currentPage, setCurrentPage] = useState(1)
+        const [postsPerPage , setPostPerPage] = useState(9)
+        const totalGallery = data.length
+        const lastPost = currentPage * postsPerPage
+        const FirstPost = lastPost - postsPerPage
+        const pageNumber = Math.ceil(totalGallery / postsPerPage)
+        const currentPosts = data.slice(FirstPost, lastPost)
+        const current = pageNumber => setCurrentPage(pageNumber)
     ```
 ---
 ### # 참고사이트
