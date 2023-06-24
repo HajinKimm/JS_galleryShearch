@@ -62,7 +62,7 @@ export const GalleryItemBox = styled.article`
         }
     }
 `
-
+//검색기록
 export const SearchMemory = styled.div`
     display: flex;
     justify-content: center;
@@ -81,6 +81,26 @@ export const SearchMemory = styled.div`
         i{
             cursor: pointer;
             vertical-align: middle;
+        }
+    }
+`
+//페이징
+export const GalleryPaginBox = styled.div`
+    text-align: center;
+    margin: 20px 0px 50px ;
+    span{
+        cursor: pointer;
+        border: 1px solid #000;
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 47px;
+        font-size: 25px;
+        margin-right: 10px;
+        &.on{
+            background: #000;
+            color: #fff;
         }
     }
 `

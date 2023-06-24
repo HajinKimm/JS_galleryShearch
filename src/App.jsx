@@ -1,6 +1,6 @@
 import React from 'react';
 import GlobalStyle from './components/styled/Global';
-import Gallery from './components/gallerySearchMemory/Gallery';
+import Gallery from './components/galleryPaging/Gallery';
 
 
 const App = () => {

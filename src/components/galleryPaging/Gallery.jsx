@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import GallerySearch from './GallerySearch';
 import GalleryList from './GalleryList';
 import GallerySearchMemory from './GallerySearchMemory';
+import GalleryPagin from './GalleryPagin';
 import {Container} from '../styled/galleryStyle'
 
 const Gallery = () => {
@@ -12,10 +13,20 @@ const Gallery = () => {
     const [text, setText] = useState('')
     const [memory, setMemory] =useState([])
     const no = useRef(1)
+    //페이징
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postsPerPage , setPostPerPage] = useState(9)
+    const totalGallery = data.length
+    const lastPost = currentPage * postsPerPage
+    const FirstPost = lastPost - postsPerPage
+    const pageNumber = Math.ceil(totalGallery / postsPerPage)
+    const currentPosts = data.slice(FirstPost, lastPost)
+    const current = pageNumber => setCurrentPage(pageNumber)
+
 
     useEffect(()=>{
         const API_KEY = '36875442-b68909cdf3bbc37f8d54f62e2'
-        const url = `https://pixabay.com/api/?key=${API_KEY}&q=${text}&image_type=photo`
+        const url = `https://pixabay.com/api/?key=${API_KEY}&q=${text}&image_type=photo&per_page=100`
         axios.get(url)
             .then(res=>{
                 setData(res.data.hits)
@@ -47,7 +58,8 @@ const Gallery = () => {
         <Container width='1400px'>
             <GallerySearch onSearch={onSearch}/>
             <GallerySearchMemory memory={memory} onDel={onDel} onMemory={onMemory}/>
-            <GalleryList data={data}/>
+            <GalleryList data={currentPosts}/>
+            <GalleryPagin current={current} pageNumber={pageNumber} currentPage={currentPage}/>
         </Container>
     );
 };
