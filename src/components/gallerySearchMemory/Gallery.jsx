@@ -41,7 +41,6 @@ const Gallery = () => {
 
     const onMemory =(id)=>{
         setText(memory.find(item=>item.id === id).text)
-        console.log(memory.find(item=>item.id === id).text)
     }
     return (
         <Container width='1400px'>
