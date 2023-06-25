@@ -15,11 +15,11 @@ const Gallery = () => {
     const no = useRef(1)
     //페이징
     const [currentPage, setCurrentPage] = useState(1)
-    const [postsPerPage , setPostPerPage] = useState(9)
+    const postsPerPage = 9
     const totalGallery = data.length
     const lastPost = currentPage * postsPerPage
     const FirstPost = lastPost - postsPerPage
-    const pageNumber = Math.ceil(totalGallery / postsPerPage)
+    const totalPageNumber = Math.ceil(totalGallery / postsPerPage)
     const currentPosts = data.slice(FirstPost, lastPost)
     const current = pageNumber => setCurrentPage(pageNumber)
 
@@ -45,6 +45,7 @@ const Gallery = () => {
     const onSearch=(text)=>{
         setText(text)
         setMemory([...memory, {id:no.current++ ,text}])
+        setCurrentPage(1)
     }
     //검색기록 단어 클릭시 검색가능
     const onMemory =(id)=>{
@@ -59,7 +60,7 @@ const Gallery = () => {
             <GallerySearch onSearch={onSearch}/>
             <GallerySearchMemory memory={memory} onDel={onDel} onMemory={onMemory}/>
             <GalleryList data={currentPosts}/>
-            <GalleryPagin current={current} pageNumber={pageNumber} currentPage={currentPage}/>
+            <GalleryPagin current={current} totalPageNumber={totalPageNumber} currentPage={currentPage}/>
         </Container>
     );
 };
